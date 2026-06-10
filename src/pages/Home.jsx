@@ -117,6 +117,7 @@ const parseAndDisplayResponse = (response) => {
 
     async function handleGenerateData() {
         console.log("FormDATA: ", formData);
+        
         setGeminiResponse('Generating response, please wait...');
         const prompt = `
         You are a professional career coach and resume optimization expert. 
