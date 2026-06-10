@@ -79,6 +79,9 @@ const parseAndDisplayResponse = (response) => {
         
         return content.split('\n').map((line, index) => {
             const trimmedLine = line.trim();
+            if (trimmedLine.startsWith('#')) {
+  return null;
+}
             if (!trimmedLine) return <br key={index} />;
             
             // Handle bullet points
@@ -153,7 +156,7 @@ Ensure the response is structured, clear, and easy to display in a React app.
 const options = {
   method: 'POST',
   headers: {
-    'Authorization': 'Bearer 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',
+  Authorization: `Bearer ${import.meta.env.VITE_GROQ_API_KEY}`,
     'Content-Type': 'application/json'
   },
  body: JSON.stringify({
@@ -299,6 +302,25 @@ try {
                                         ></textarea>
                                         <div className="form-text">Paste your current resume to get optimization suggestions</div>
                                     </div>
+                                    <div className="mb-4">
+  <label className="form-label fw-semibold">
+    Upload Resume (PDF)
+  </label>
+
+  <input
+    type="file"
+    accept=".pdf"
+    className="form-control"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      console.log(file);
+    }}
+  />
+
+  <div className="form-text">
+    Upload your current resume PDF
+  </div>
+</div>
 
                                     <div className="d-grid">
                                         <button 
